@@ -1,6 +1,7 @@
 package com.slalom.pokerchallenge.service;
 
 import com.slalom.pokerchallenge.objects.Card;
+import com.slalom.pokerchallenge.objects.PokerHand;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,16 +12,15 @@ import java.util.Map;
 @Service
 public class CardService {
 
-
-    private Card[] cards;
+    private PokerHand pokerHand = new PokerHand();
 
     public List<Card> getAllCards() {
-        return Arrays.asList(cards);
+
+        return pokerHand.getCards();
     }
 
-
-    public List<Card> processCards(List<Map> hand) {
-        cards = new Card[5];
+    public PokerHand processCards(List<Map> hand) {
+        Card[] cards = new Card[5];
         int idx = 0;
         for (Map card: hand) {
             String rank = String.valueOf(card.get("rank"));
@@ -32,7 +32,8 @@ public class CardService {
             idx++;
         }
         Arrays.sort(cards);
-        return Arrays.asList(cards);
+        pokerHand.setCards(Arrays.asList(cards));
+        return pokerHand;
     }
 
 }

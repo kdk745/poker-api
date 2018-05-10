@@ -1,7 +1,9 @@
 package com.slalom.pokerchallenge.controller;
 
 import com.slalom.pokerchallenge.objects.Card;
+import com.slalom.pokerchallenge.objects.PokerHand;
 import com.slalom.pokerchallenge.service.CardService;
+import com.slalom.pokerchallenge.service.PokerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ public class PokerController {
 
     @Autowired
     private CardService cardService;
+    @Autowired
+    private PokerService pokerService;
 
     @RequestMapping("/cards")
     public List<Card> getAllCards() {
@@ -25,7 +29,8 @@ public class PokerController {
 
     @RequestMapping(method = RequestMethod.POST, value="/cards")
     public void processCards(@RequestBody Map<String, List<Map>> payload) throws Exception {
-        List<Card> message = cardService.processCards(payload.get("hand"));
-        System.out.println(message);
+        PokerHand hand = cardService.processCards(payload.get("hand"));
+        String result = pokerService.processHand(hand);
+        System.out.println(result);
     }
 }
