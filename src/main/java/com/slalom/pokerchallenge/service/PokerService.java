@@ -57,7 +57,11 @@ public class PokerService {
             card = cards.get(i);
             nextCard = cards.get(i+1);
             sameSuit = sameSuit && (card.getSuit().equals(nextCard.getSuit()));
-            seq = seq && (card.getRank() == nextCard.getRank() - 1);
+            if (seq == true && (card.getRank() == 5 && nextCard.getRank() == 14)) {
+                seq = seq;
+            } else {
+                seq = seq && (card.getRank() == nextCard.getRank() - 1);
+            }
         }
 
         return sameSuit && seq;
@@ -92,7 +96,11 @@ public class PokerService {
         for (int i = 0; i < cards.size() - 1; i++) {
             card = cards.get(i);
             nextCard = cards.get(i+1);
-            seq = seq && (card.getRank() == nextCard.getRank() - 1);
+            if (seq == true && (card.getRank() == 5 && nextCard.getRank() == 14)) {
+                seq = seq;
+            } else {
+                seq = seq && (card.getRank() == nextCard.getRank() - 1);
+            }
         }
         return seq;
     }

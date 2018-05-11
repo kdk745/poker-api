@@ -17,10 +17,14 @@ import java.util.Map;
 @RestController
 public class PokerController {
 
-    @Autowired
     private CardService cardService;
-    @Autowired
     private PokerService pokerService;
+
+    @Autowired
+    public PokerController(CardService cardService, PokerService pokerService) {
+        this.cardService = cardService;
+        this.pokerService = pokerService;
+    }
 
     @RequestMapping("/cards")
     public List<Card> getAllCards() {
@@ -28,9 +32,9 @@ public class PokerController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value="/cards")
-    public void processCards(@RequestBody Map<String, List<Map>> payload) throws Exception {
+    public String processCards(@RequestBody Map<String, List<Map>> payload) throws Exception {
         PokerHand hand = cardService.processCards(payload.get("hand"));
         String result = pokerService.processHand(hand);
-        System.out.println(result);
+        return result;
     }
 }
