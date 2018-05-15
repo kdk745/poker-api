@@ -5,16 +5,15 @@ import com.slalom.pokerchallenge.objects.PokerHand;
 import com.slalom.pokerchallenge.service.CardService;
 import com.slalom.pokerchallenge.service.PokerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/cards")
 public class PokerController {
 
     private CardService cardService;
@@ -26,12 +25,13 @@ public class PokerController {
         this.pokerService = pokerService;
     }
 
-    @RequestMapping("/cards")
+    @GetMapping
     public List<Card> getAllCards() {
         return cardService.getAllCards();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/cards")
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
     public String processCards(@RequestBody Map<String, List<Map>> payload) throws Exception {
         PokerHand hand = cardService.processCards(payload.get("hand"));
         String result = pokerService.processHand(hand);
