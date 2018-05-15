@@ -1,7 +1,6 @@
 package com.slalom.pokerchallenge.service;
 
 import com.slalom.pokerchallenge.objects.Card;
-import com.slalom.pokerchallenge.objects.PokerHand;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -11,8 +10,7 @@ public class PokerService {
 
     private String response = "high card";
 
-    public String processHand(PokerHand pokerHand) {
-        List<Card> cards = pokerHand.getCards();
+    public String processHand(List<Card> cards) {
         if (straightFlush(cards)) {
             response = "straight flush";
         } else if (fourKind(cards)) {

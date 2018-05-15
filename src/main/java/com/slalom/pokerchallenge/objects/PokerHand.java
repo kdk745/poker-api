@@ -1,10 +1,8 @@
 package com.slalom.pokerchallenge.objects;
 
-import java.util.List;
-
 public class PokerHand {
 
-    List<Card> cards;
+    Card[] cards;
     String hand;
 
     public PokerHand() {
@@ -12,17 +10,17 @@ public class PokerHand {
     }
 
     // initialize an instance of the PokerHand class
-    public PokerHand(List<Card> cards) {
+    public PokerHand(Card[] cards) {
         super();
         // rank maps to integer value
         this.cards = cards;
     }
 
-    public List<Card> getCards() {
+    public Card[] getCards() {
         return cards;
     }
 
-    public void setCards(List<Card> cards) {
+    public void setCards(Card[] cards) {
         this.cards = cards;
     }
 

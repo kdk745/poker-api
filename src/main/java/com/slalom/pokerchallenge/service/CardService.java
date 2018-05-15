@@ -4,7 +4,6 @@ import com.slalom.pokerchallenge.objects.Card;
 import com.slalom.pokerchallenge.objects.PokerHand;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +11,17 @@ import java.util.Map;
 @Service
 public class CardService {
 
+    private PokerService pokerService;
+
+    public CardService(PokerService pokerService) {
+        this.pokerService = pokerService;
+    }
+
     private PokerHand pokerHand = new PokerHand();
 
     public List<Card> getAllCards() {
 
-        return pokerHand.getCards();
+        return Arrays.asList(pokerHand.getCards());
     }
 
     public PokerHand processCards(List<Map> hand) {
@@ -32,7 +37,9 @@ public class CardService {
             idx++;
         }
         Arrays.sort(cards);
-        pokerHand.setCards(Arrays.asList(cards));
+        pokerHand.setHand(pokerService.processHand(Arrays.asList(cards)));
+        pokerHand.setCards(cards);
+
         return pokerHand;
     }
 
