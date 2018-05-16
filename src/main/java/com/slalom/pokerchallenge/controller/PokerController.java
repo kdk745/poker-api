@@ -21,6 +21,7 @@ public class PokerController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<Card> getAllCards() {
         return cardService.getAllCards();
     }

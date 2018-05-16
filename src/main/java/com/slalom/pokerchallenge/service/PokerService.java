@@ -8,7 +8,7 @@ import java.util.*;
 @Service
 public class PokerService {
 
-    private String response = "high card";
+    private String response;
 
     public String processHand(List<Card> cards) {
         if (straightFlush(cards)) {
@@ -24,9 +24,11 @@ public class PokerService {
         } else if (threeKind(cards)) {
             response = "three of a kind";
         } else if (twoPair(cards)) {
-            response = "two pair";
+            response = "two pairs";
         } else if (onePair(cards)) {
             response = "one pair";
+        } else {
+            response = "high card";
         }
 
         return response;
