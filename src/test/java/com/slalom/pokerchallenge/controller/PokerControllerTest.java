@@ -21,11 +21,7 @@ public class PokerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-//    @Test
-//    public void getAllCards() {
-//    }
-
+    
     public void apiCall(String body, String result) throws Exception {
         mockMvc.perform(post("/cards")
                 .contentType(MediaType.APPLICATION_JSON)
