@@ -20,12 +20,14 @@ public class PokerController {
         this.cardService = cardService;
     }
 
+    @CrossOrigin(origins = {"*"}, maxAge = 3000)
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Card> getAllCards() {
         return cardService.getAllCards();
     }
 
+    @CrossOrigin(origins = {"*"}, maxAge = 3000)
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public String processCards(@RequestBody Map<String, List<Map>> payload) throws Exception {
