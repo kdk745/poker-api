@@ -2,8 +2,8 @@
 * Fork, Clone locally
 * Import in selected IDEA, use gradle build
 
-### Runs locally on
-* http://localhost:8080
+### Deployed to heroku
+* https://serene-cove-82707.herokuapp.com
 
 ### controller 
 * Located in main/java/com/slalom/pockerchallenge/controller
